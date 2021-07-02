@@ -79,7 +79,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(
                   child: Teachable(
                     path: "help/index.html",
-                    drawPose: false,
                     results: (res) {
                       var resp = jsonDecode(res);
                       print("The values are $resp");

@@ -7,9 +7,7 @@ class Teachable extends StatefulWidget {
   // final String path;
   final String path;
   final Function(String)? results;
-  final bool drawPose;
-  const Teachable(
-      {Key? key, required this.path, this.results, required this.drawPose})
+  const Teachable({Key? key, required this.path, this.results})
       : super(key: key);
 
   @override
