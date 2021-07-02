@@ -1,5 +1,7 @@
 // import 'dart:io';
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 // import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -95,11 +97,11 @@ class _MyHomePageState extends State<MyHomePage> {
             Expanded(
                 child: Container(
               child: Teachable(
-                url:
-                    "https://teachablemachine.withgoogle.com/models/pJ5GFLRmm/",
+                path: "pose/index.html",
                 drawPose: false,
                 results: (res) {
-                  print("The values are ${res.toString()}");
+                  var resp = jsonDecode(res);
+                  print("The values are $resp");
                 },
               ),
             )),

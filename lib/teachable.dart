@@ -1,13 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class Teachable extends StatefulWidget {
   // final String path;
-  final String url;
-  final Function(Map<String, double>)? results;
+  final String path;
+  final Function(String)? results;
   final bool drawPose;
   const Teachable(
-      {Key? key, required this.url, this.results, required this.drawPose})
+      {Key? key, required this.path, this.results, required this.drawPose})
       : super(key: key);
 
   @override
@@ -24,12 +26,10 @@ class _TeachableState extends State<Teachable> {
   @override
   Widget build(BuildContext context) {
     return InAppWebView(
-        // initialUrl: "help/index.html",
-        initialFile: "pose/index.html",
+        initialFile: widget.path,
         initialOptions: InAppWebViewGroupOptions(
           crossPlatform: InAppWebViewOptions(
             mediaPlaybackRequiresUserGesture: false,
-            // debuggingEnabled: true,
           ),
         ),
         onWebViewCreated: (InAppWebViewController controller) async {
@@ -40,18 +40,10 @@ class _TeachableState extends State<Teachable> {
                 List predictions = args[0];
                 Map<String, double> mp = new Map();
                 predictions.forEach((element) {
-                  mp[element.className] = element.probability;
+                  mp[element["className"]] = element["probability"];
                 });
-                widget.results!(mp);
+                widget.results!(JsonEncoder().convert(mp));
               });
-          // controller.addJavaScriptHandler(
-          //     handlerName: 'handlerFoo',
-          //     callback: (args) {
-          //       // return data to the JavaScript side!
-          //       print("Called");
-          //       return {'url': widget.url, 'drawPose': widget.drawPose};
-          //     });
-          await controller.evaluateJavascript(source: "init(${widget.url})");
         },
         androidOnPermissionRequest: (InAppWebViewController controller,
             String origin, List<String> resources) async {
