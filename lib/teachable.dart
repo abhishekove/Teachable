@@ -19,6 +19,9 @@ class _TeachableState extends State<Teachable> {
       mediaPlaybackRequiresUserGesture: false,
     ),
     android: AndroidInAppWebViewOptions(useHybridComposition: true),
+    ios: IOSInAppWebViewOptions(
+      allowsInlineMediaPlayback: true,
+    ),
   );
   @override
   Widget build(BuildContext context) {
