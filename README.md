@@ -134,3 +134,9 @@ https://inappwebview.dev/docs/webrtc-api/ (Make changes only in info.plist)
 
 ## Training Models
 Train your model on [Teachable Machine](https://teachablemachine.withgoogle.com/ "Teachable Machine title") and add your url in your url section.
+
+## Demo
+[![SC2 Video](example/intro.gif)](https://youtu.be/cRt43pTVZ84)
+
+## Tutorial 
+https://youtu.be/cRt43pTVZ84
