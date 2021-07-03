@@ -47,10 +47,13 @@ class _MyHomePageState extends State<MyHomePage> {
               Expanded(
                 child: Container(
                   child: Teachable(
-                    path: "help/index.html",
+                    path: "pose/index.html",
                     results: (res) {
                       var resp = jsonDecode(res);
-                      print("The values are $resp");
+                      // print("The values are ${}");
+                      setState(() {
+                        pose = (resp['Tree Pose'] * 100.0).toString();
+                      });
                     },
                   ),
                 ),
@@ -68,10 +71,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
+                            "TREE POSE",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
                             pose,
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
                           ),
                         ],
                       ),
